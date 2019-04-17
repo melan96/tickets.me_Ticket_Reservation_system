@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavigationBar from "../NavigationBar";
+
 import ImageSlider from "../ImageSlider";
 
 class Home extends Component {

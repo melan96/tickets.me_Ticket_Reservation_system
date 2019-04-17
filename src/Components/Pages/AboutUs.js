@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import NavigationBar from "../NavigationBar";
 class AboutUs extends Component {
   state = {};
   render() {
