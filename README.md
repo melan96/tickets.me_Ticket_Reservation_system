@@ -1,3 +1,7 @@
+
+https://img.shields.io/github/package-json/melan96/melan96/tickets.me_Ticket_Reservation_system/master.svg    https://img.shields.io/github/commit-activity/m/melan96/tickets.me_Ticket_Reservation_system.svg   https://img.shields.io/node/v/passport.svg   https://img.shields.io/github/languages/count/melan96/tickets.me_Ticket_Reservation_system.svg      https://img.shields.io/github/languages/top/melan96/tickets.me_Ticket_Reservation_system.svg       https://img.shields.io/github/languages/code-size/melan96/tickets.me_Ticket_Reservation_system.svg      https://img.shields.io/github/commit-status/melan96/tickets.me_Ticket_Reservation_system/master/4e96cd44bce7b5b76c22b6ba4c8a04235e4517bd.svg
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
