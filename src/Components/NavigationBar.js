@@ -3,6 +3,7 @@ import { Switch } from "react-router-dom";
 
 class NavigationBar extends Component {
   state = {};
+
   render() {
     return (
       <div className="container-fluid">
