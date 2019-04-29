@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TicketBasicInformation from "../TicketBasicInformation";
 import UserContactInfo from "../UserContactInfo";
+import TrainSheduleTable from "../TrainSheduleTable";
 
 class UserTicketBookingForm extends Component {
   state = {
@@ -59,7 +60,7 @@ class UserTicketBookingForm extends Component {
           />
         );
       case 2:
-        return <UserContactInfo />;
+        return <TrainSheduleTable />;
     }
   }
 }
