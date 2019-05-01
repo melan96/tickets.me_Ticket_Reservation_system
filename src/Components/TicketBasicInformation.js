@@ -14,11 +14,15 @@ class TicketBasicInformation extends Component {
           <div className="panel-body">
             <div className="form-group">
               <label htmlFor="sel1">From :</label>
-              <select className="form-control" id="sel1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+              <select
+                className="form-control"
+                id="sel1"
+                onChange={onFieldChange("to")}
+              >
+                <option>Kandana</option>
+                <option>Matara</option>
+                <option>Badulla</option>
+                <option>Negombo</option>
               </select>
 
               <br />
@@ -28,10 +32,10 @@ class TicketBasicInformation extends Component {
                   className="form-control"
                   onChange={onFieldChange("from")}
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
+                  <option>Kandana</option>
+                  <option>Matara</option>
+                  <option>Badulla</option>
+                  <option>Negombo</option>
                 </select>
                 <br />
                 <button

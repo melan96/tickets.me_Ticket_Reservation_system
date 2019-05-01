@@ -34,6 +34,7 @@ class UserTicketBookingForm extends Component {
   //onFieldChange capture
   onFieldChange = input => e => {
     console.log("onFieldFunctionExecuted");
+    console.log(e.target.value);
     this.setState({
       [input]: e.target.value
     });
@@ -57,10 +58,11 @@ class UserTicketBookingForm extends Component {
           <TicketBasicInformation
             nextPage={this.nextPage}
             onFieldChange={this.onFieldChange}
+            values={values}
           />
         );
       case 2:
-        return <TrainSheduleTable />;
+        return <TrainSheduleTable values={values} />;
     }
   }
 }
