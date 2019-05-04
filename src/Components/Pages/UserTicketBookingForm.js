@@ -62,7 +62,9 @@ class UserTicketBookingForm extends Component {
           />
         );
       case 2:
-        return <TrainSheduleTable values={values} />;
+        return <TrainSheduleTable values={values} nextPage={this.nextPage} />;
+      case 3:
+        return <UserContactInfo />;
     }
   }
 }
