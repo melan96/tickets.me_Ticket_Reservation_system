@@ -20,20 +20,25 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-let Request = express.Router();
-Request = require("../backend/schema");
+const train_data_scheme = new mongoose.Schema({
+  to: String,
+  from: String,
+  trainNumber: String,
+  Price: String
+});
 
-Request.route("/addRequest").post((req, res) => {
-  let request = new Request(req.body);
-  request
-    .save()
-    .then(request => {
-      req.status(200);
-      console.log("added Request instance record..");
-    })
-    .catch(err => {
-      console.log(err + "==> captured");
-    });
+const TrainData = mongoose.model("train_data", train_data_scheme);
+
+app.get("/getda", (req, res) => {
+  TrainData.find({}, (err, doc) => {
+    console.log("this ser.js executed");
+    if (!err) {
+      res.send(doc);
+      console.log(doc);
+    } else {
+      console.log(err);
+    }
+  });
 });
 
 app.listen(4001, () => {

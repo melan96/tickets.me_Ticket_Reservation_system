@@ -1,18 +1,22 @@
 import React, { Component } from "react";
-import TrainRecord from "./TrainRecord";
 import axios from "axios";
 
 class TrainSheduleTable extends Component {
+  state = {
+    traindata: []
+  };
+
   constructor(props) {
     super(props);
-    console.log(this.props.values.to);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios
-      .get("https://jsonplaceholder.typicode.com/todos")
+      .get("http://localhost:4001/getd")
       .then(res => {
-        console.log(res);
+        this.setState({
+          traindata: res.data
+        });
       })
       .catch(err => {
         console.log(err);
@@ -20,7 +24,24 @@ class TrainSheduleTable extends Component {
   }
 
   render() {
-    return <h1>Your Start : {JSON.stringify(this.props.values.to)}</h1>;
+    return (
+      <div>
+        <ul>
+          {this.state.traindata.map(item => {
+            return (
+              <div className="container">
+                <div className="panel panel-default">
+                  <div className="panel-heading ">TRAIN TO </div>
+                  <div className="panel-body">
+                    <p>To -> Details</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+    );
   }
 }
 
