@@ -1,0 +1,12 @@
+total 744
+drwxr-xr-x    6 melan melan   4096 මැයි   5 08:59 ./
+drwxrwxr-x    3 melan melan   4096 අප්‍රි  18 08:43 ../
+-rw-rw-r--    1 melan melan      0 මැයි   5 08:59 currentDirectoryFiles.dat
+drwxr-xr-x    8 melan melan   4096 මැයි   4 17:34 .git/
+-rw-r--r--    1 melan melan    310 අප්‍රි  18 08:44 .gitignore
+drwxr-xr-x 1074 melan melan  36864 මැයි   1 10:27 node_modules/
+-rw-r--r--    1 melan melan   1097 මැයි   1 10:27 package.json
+-rw-r--r--    1 melan melan 685701 මැයි   1 10:27 package-lock.json
+drwxr-xr-x    2 melan melan   4096 අප්‍රි  18 08:44 public/
+-rw-r--r--    1 melan melan   3573 අප්‍රි  18 08:44 README.md
+drwxr-xr-x    4 melan melan   4096 මැයි   1 10:28 src/

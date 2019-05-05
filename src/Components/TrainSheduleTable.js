@@ -3,11 +3,21 @@ import axios from "axios";
 
 class TrainSheduleTable extends Component {
   state = {
-    traindata: []
+    traindata: [],
+    price: String
   };
 
-  contToNext = e => {
-    this.props.nextPage();
+  contToNextBtn = e => {
+    this.setState(
+      {
+        price: this.state.traindata[3]
+      },
+      () => {
+        console.log(JSON.stringify(this.state.price));
+
+        this.props.nextPage();
+      }
+    );
   };
 
   constructor(props) {
@@ -38,6 +48,7 @@ class TrainSheduleTable extends Component {
                   <div className="panel-heading ">
                     TRAIN TO {JSON.stringify(item.to)}
                   </div>
+
                   <div className="panel-body">
                     <h5>To : {JSON.stringify(item.to)}</h5>
                     <h5>From : {JSON.stringify(item.from)}</h5>
@@ -48,7 +59,7 @@ class TrainSheduleTable extends Component {
                       <button
                         type="button"
                         className="btn btn-primary"
-                        onClick={this.contToNext}
+                        onClick={this.contToNextBtn}
                       >
                         Book Now
                       </button>
