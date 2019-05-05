@@ -1,6 +1,24 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class UserContactInfo extends Component {
+  contToNextBtn = e => {
+    e.preventDefault();
+    const formData = {
+      userFullName: "Melan Rashitha Dias",
+      userEmail: "melanrashitha@outlook.com",
+      userMobileNumber: "Melan Rashitha Dias",
+      userAddressLine01: "Melan Rashitha Dias",
+      userAddressLine02: "Melan Rashitha Dias",
+      userAddressLine03: " Kandana "
+    };
+    axios
+      .post("http://localhost:4001/senduser", formData)
+      .then(function(response) {
+        console.log("success", response.data);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -51,6 +69,16 @@ class UserContactInfo extends Component {
                   id="address_line03"
                   placeholder="City"
                 />
+                <br />
+                <div style={{ float: "right" }}>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={this.contToNextBtn}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
           </div>

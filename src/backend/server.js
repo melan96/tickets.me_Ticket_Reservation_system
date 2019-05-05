@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const Schemas = require("../backend/Schemas");
+// const Schemas = require("../backend/Schemas");
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -20,6 +20,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 const train_data_scheme = new mongoose.Schema({
   to: String,
@@ -42,9 +44,21 @@ app.get("/getda", (req, res) => {
   });
 });
 
-app.post("/requestUserInfo", (req, res) => {
-  let savedUser = new Schemas.UserSchm(req.body);
-  savedUser
+app.post("/senduser", (req, res) => {
+  const UserShema = new mongoose.Schema({
+    userFullName: String,
+    userEmail: String,
+    userMobileNumber: String,
+    userAddressLine01: String,
+    userAddressLine02: String,
+    userAddressLine03: String
+  });
+
+  var User = mongoose.model("User-data-model", UserShema);
+  let userDataLoad = new User(req.body);
+
+  //saved data online mongoose data base
+  userDataLoad
     .save()
     .then(res => console.log(res))
     .catch(err => console.log(err));

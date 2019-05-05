@@ -11,7 +11,8 @@ class UserTicketBookingForm extends Component {
     numberOfPassengers: "",
     date: "",
     email: "",
-    mobileNumber: ""
+    mobileNumber: "",
+    price: ""
   };
 
   //proceed to NextPage
@@ -64,7 +65,7 @@ class UserTicketBookingForm extends Component {
       case 2:
         return <TrainSheduleTable values={values} nextPage={this.nextPage} />;
       case 3:
-        return <UserContactInfo />;
+        return <UserContactInfo values={values} nextPage={this.nextPage} />;
     }
   }
 }
