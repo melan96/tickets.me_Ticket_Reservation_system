@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const Schemas = require("../backend/Schemas");
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -39,6 +40,14 @@ app.get("/getda", (req, res) => {
       console.log(err);
     }
   });
+});
+
+app.post("/requestUserInfo", (req, res) => {
+  let savedUser = new Schemas.UserSchm(req.body);
+  savedUser
+    .save()
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 });
 
 app.listen(4001, () => {
