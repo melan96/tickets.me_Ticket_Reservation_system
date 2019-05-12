@@ -4,11 +4,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 // const Schemas = require("../backend/Schemas");
 
+//remote connection string = "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(
-    "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
-  )
+  .connect("mongodb://mongodb0.localhost.com:27017/admin")
   .then(() => {
     console.log("Connected to DB");
   })
