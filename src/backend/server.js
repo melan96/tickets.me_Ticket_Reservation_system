@@ -7,7 +7,9 @@ const mongoose = require("mongoose");
 //remote connection string = "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://mongodb0.localhost.com:27017/admin")
+  .connect(
+    "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
+  )
   .then(() => {
     console.log("Connected to DB");
   })
