@@ -38,14 +38,26 @@ class TicketBasicInformation extends Component {
                   <option>Negombo</option>
                 </select>
                 <br />
-                <button
-                  className="btn btn-danger navbar-btn"
-                  style={{ float: "right" }}
-                  onClick={this.contToNext}
-                >
-                  Next
-                </button>
               </div>
+              <div className="form-group">
+                <div className="input-group date" data-provide="datepicker">
+                  <input
+                    type="date"
+                    className="form-control"
+                    onChange={onFieldChange("date")}
+                  />
+                  <div className="input-group-addon">
+                    <span className="glyphicon glyphicon-th" />
+                  </div>
+                </div>
+              </div>
+              <button
+                className="btn btn-danger navbar-btn"
+                style={{ float: "right" }}
+                onClick={this.contToNext}
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>
@@ -53,10 +65,5 @@ class TicketBasicInformation extends Component {
     );
   }
 }
-
-const myFunc = e => {
-  e.preventDefault();
-  alert("a");
-};
 
 export default TicketBasicInformation;

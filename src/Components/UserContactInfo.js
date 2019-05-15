@@ -23,10 +23,10 @@ class UserContactInfo extends Component {
     const formData = {
       userFullName: this.state.userFullName,
       userEmail: this.state.userEmail,
-      userMobileNumber: "Melan Rashitha Dias",
-      userAddressLine01: "Melan Rashitha Dias",
-      userAddressLine02: "Melan Rashitha Dias",
-      userAddressLine03: " Kandana "
+      userMobileNumber: this.state.userMobileNumber,
+      userAddressLine01: this.state.userAddressLine01,
+      userAddressLine02: this.state.userAddressLine02,
+      userAddressLine03: this.state.userAddressLine03
     };
     axios
       .post("http://localhost:4001/senduser", formData)
