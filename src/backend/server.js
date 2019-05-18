@@ -2,6 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
+var User = require("../backend/user_sch");
+// const jwt = require("jsonwebtoken");
 // const Schemas = require("../backend/Schemas");
 
 //remote connection string = "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
@@ -46,16 +49,6 @@ app.get("/getda", (req, res) => {
 });
 
 app.post("/senduser", (req, res) => {
-  const UserShema = new mongoose.Schema({
-    userFullName: String,
-    userEmail: String,
-    userMobileNumber: String,
-    userAddressLine01: String,
-    userAddressLine02: String,
-    userAddressLine03: String
-  });
-
-  var User = mongoose.model("User-data-model", UserShema);
   let userDataLoad = new User(req.body);
 
   //saved data online mongoose data base
@@ -63,6 +56,31 @@ app.post("/senduser", (req, res) => {
     .save()
     .then(res => console.log(res))
     .catch(err => console.log(err));
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "ticketmelk@gmail.com", // generated ethereal user
+      pass: "windows8pro" // generated ethereal password
+    }
+  });
+
+  // send mail with defined transport object
+  let info = transporter.sendMail({
+    from: '"TicketsMeReply👻" <noreply-tic>', // sender address
+    to: JSON.stringify(req.body.userEmail), // list of receivers
+    subject: "Confirm your email", // Subject line
+    html: `<html><h3>Confirm Your Email Address</h3></html>` // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
 
 app.listen(4001, () => {
