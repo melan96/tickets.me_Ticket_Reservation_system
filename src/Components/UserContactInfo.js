@@ -2,40 +2,29 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class UserContactInfo extends Component {
-  state = {
-    userFullName: "",
-    userEmail: "",
-    userMobileNumber: "",
-    userAddressLine01: "",
-    userAddressLine02: "",
-    userAddressLine03: ""
-  };
-  onFieldChange = input => e => {
-    console.log("User Form Change captured ..");
-    console.log(e.target.value);
-    this.setState({
-      [input]: e.target.value
-    });
-  };
-
   contToNextBtn = e => {
     e.preventDefault();
+    const { values } = this.props;
     const formData = {
-      userFullName: this.state.userFullName,
-      userEmail: this.state.userEmail,
-      userMobileNumber: this.state.userMobileNumber,
-      userAddressLine01: this.state.userAddressLine01,
-      userAddressLine02: this.state.userAddressLine02,
-      userAddressLine03: this.state.userAddressLine03
+      userFullName: values.userFullName,
+      userEmail: values.userEmail,
+      userMobileNumber: values.userMobileNumber,
+      userAddressLine01: values.userAddressLine01,
+      userAddressLine02: values.userAddressLine02,
+      userAddressLine03: values.userAddressLine03
     };
+
     axios
       .post("http://localhost:4001/senduser", formData)
       .then(function(response) {
         console.log("success", response.data);
       });
+    this.props.nextPage();
   };
 
   render() {
+    const { onFieldChange } = this.props;
+    const { value } = this.props;
     return (
       <div>
         <div className="container-fluid">
@@ -48,7 +37,7 @@ class UserContactInfo extends Component {
                   type="text"
                   className="form-control"
                   id="fullName"
-                  onChange={this.onFieldChange("userFullName")}
+                  onChange={onFieldChange("userFullName")}
                 />
                 <br />
                 <label htmlFor="email">Email address:</label>
@@ -56,7 +45,7 @@ class UserContactInfo extends Component {
                   type="email"
                   className="form-control"
                   id="email"
-                  onChange={this.onFieldChange("userEmail")}
+                  onChange={onFieldChange("userEmail")}
                 />
 
                 <br />
@@ -67,7 +56,7 @@ class UserContactInfo extends Component {
                   className="form-control"
                   id="fullName"
                   placeholder="+94 711234218"
-                  onChange={this.onFieldChange("userMobileNumber")}
+                  onChange={onFieldChange("userMobileNumber")}
                 />
 
                 <br />
@@ -78,7 +67,7 @@ class UserContactInfo extends Component {
                   className="form-control"
                   id="address_line01"
                   placeholder="Street number"
-                  onChange={this.onFieldChange("userAddressLine01")}
+                  onChange={onFieldChange("userAddressLine01")}
                 />
                 <br />
                 <label htmlFor="address-line02"> Street Name </label>
@@ -87,7 +76,7 @@ class UserContactInfo extends Component {
                   className="form-control"
                   id="address_line02"
                   placeholder="Street Name"
-                  onChange={this.onFieldChange("userAddressLine02")}
+                  onChange={onFieldChange("userAddressLine02")}
                 />
 
                 <br />
@@ -97,7 +86,7 @@ class UserContactInfo extends Component {
                   className="form-control"
                   id="address_line03"
                   placeholder="City"
-                  onChange={this.onFieldChange("userAddressLine03")}
+                  onChange={onFieldChange("userAddressLine03")}
                 />
                 <br />
                 <div style={{ float: "right" }}>

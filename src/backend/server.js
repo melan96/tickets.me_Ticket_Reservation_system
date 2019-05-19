@@ -4,10 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 var User = require("../backend/user_sch");
-// const jwt = require("jsonwebtoken");
-// const Schemas = require("../backend/Schemas");
 
-//remote connection string = "mongodb+srv://melan96:melan96@mongo-todo-yebxu.mongodb.net/test?retryWrites=true"
 mongoose.Promise = global.Promise;
 mongoose
   .connect(
@@ -72,7 +69,7 @@ app.post("/senduser", (req, res) => {
     from: '"TicketsMeReply👻" <noreply-tic>', // sender address
     to: JSON.stringify(req.body.userEmail), // list of receivers
     subject: "Confirm your email", // Subject line
-    html: `<html><h3>Confirm Your Email Address</h3></html>` // html body
+    html: `<html><h3>Confirm Your Email Address ${randomKeyGenerator()}</h3></html>` // html body
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -82,6 +79,10 @@ app.post("/senduser", (req, res) => {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
+
+function randomKeyGenerator() {
+  return "250154";
+}
 
 app.listen(4001, () => {
   console.log("listen to server ...");

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TicketBasicInformation from "../TicketBasicInformation";
+import ConfirmationCode from "../ConfirmationCode";
 import UserContactInfo from "../UserContactInfo";
 import TrainSheduleTable from "../TrainSheduleTable";
 
@@ -12,7 +13,14 @@ class UserTicketBookingForm extends Component {
     date: "",
     email: "",
     mobileNumber: "",
-    price: ""
+    price: "",
+    userFullName: "",
+    userEmail: "",
+    userMobileNumber: "",
+    userAddressLine01: "-default-",
+    userAddressLine02: "",
+    userAddressLine03: "",
+    secretVerifyEmailKey: ""
   };
 
   //proceed to NextPage
@@ -34,11 +42,26 @@ class UserTicketBookingForm extends Component {
 
   //onFieldChange capture
   onFieldChange = input => e => {
-    console.log("onFieldFunctionExecuted");
+    console.log("onFieldFunctionExecuted  -> " + e.target.value);
     console.log(e.target.value);
     this.setState({
       [input]: e.target.value
     });
+    console.log(
+      "onFieldFunctionExecuted STATE -> " + JSON.stringify(this.state.to)
+    );
+  };
+
+  //userVerificationKeyUpdate
+  onKeyGenerate = input => {
+    this.setState({
+      secretVerifyEmailKey: input
+    });
+
+    console.log(
+      "Generated KEY STATE -> " +
+        JSON.stringify(this.state.secretVerifyEmailKey)
+    );
   };
 
   render() {
@@ -49,9 +72,28 @@ class UserTicketBookingForm extends Component {
       numberOfPassengers,
       date,
       email,
-      mobileNumber
+      mobileNumber,
+      userEmail,
+      userMobileNumber,
+      userAddressLine01,
+      userAddressLine02,
+      userAddressLine03,
+      secretVerifyEmailKey
     } = this.state;
-    const values = { from, to, numberOfPassengers, date, email, mobileNumber };
+    const values = {
+      from,
+      to,
+      numberOfPassengers,
+      date,
+      email,
+      mobileNumber,
+      userEmail,
+      userMobileNumber,
+      userAddressLine01,
+      userAddressLine02,
+      userAddressLine03,
+      secretVerifyEmailKey
+    };
 
     switch (pageCode) {
       case 1:
@@ -63,9 +105,23 @@ class UserTicketBookingForm extends Component {
           />
         );
       case 2:
-        return <TrainSheduleTable values={values} nextPage={this.nextPage} />;
+        return (
+          <TrainSheduleTable
+            values={values}
+            nextPage={this.nextPage}
+            onFieldChange={this.onFieldChange}
+          />
+        );
       case 3:
-        return <UserContactInfo values={values} nextPage={this.nextPage} />;
+        return (
+          <UserContactInfo
+            values={values}
+            nextPage={this.nextPage}
+            onFieldChange={this.onFieldChange}
+          />
+        );
+      case 4:
+        return <ConfirmationCode />;
     }
   }
 }

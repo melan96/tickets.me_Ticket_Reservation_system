@@ -21,18 +21,17 @@ class ConfirmationCode extends Component {
               className="form-control"
               id="address_line03"
               placeholder="City"
-              onChange={this.onFieldChange("userAddressLine03")}
+              //onChange={this.onFieldChange("userAddressLine03")}
             />
             <br />
-            <div style={{ float: "right" }}>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.contToNextBtn}
-              >
-                Next
-              </button>
-            </div>
+
+            <button
+              type="button"
+              className="btn btn-danger btn-block"
+              // onClick={this.contToNextBtn}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
