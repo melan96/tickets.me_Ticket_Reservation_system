@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 var User = require("../backend/user_sch");
+var Payment = require("../backend/payment_sch");
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -49,10 +50,27 @@ app.get("/getda", (req, res) => {
 
 app.get("/getKey", (req, res) => {
   unit = {
-    name: "jsonObj",
+    functionDataName: "user-email-confirm",
     confirmation: userSession.confirmationkey
   };
   res.send(unit);
+});
+
+function transactionIDGEN() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+app.post("/paymentSucess", (req, res) => {
+  req.body.transactionID = transactionIDGEN();
+  let paymentData = new Payment(req.body);
+  console.log("/paymentSuccess");
+  paymentData
+    .save()
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 });
 app.post("/senduser", (req, res) => {
   let userDataLoad = new User(req.body);

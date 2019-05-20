@@ -51,7 +51,6 @@ class ConfirmationCode extends Component {
               className="form-control"
               id="confirmkey"
               placeholder="XXXXXX"
-              //onChange={this.onFieldChange("userAddressLine03")}
             />
             <br />
 

@@ -66,13 +66,17 @@ class UserTicketBookingForm extends Component {
   };
 
   priceSetState = input => {
-    // alert("eeeee");
-    this.setState({
-      price: input
-    });
-    console.log("Price set to" + JSON.stringify(input));
+    this.setState(
+      {
+        price: JSON.stringify(input)
+      },
+      function() {
+        console.log("PROP - > " + this.state.price);
+      }
+    );
     this.nextPage();
   };
+
   render() {
     const { pageCode } = this.state;
     const {
@@ -82,6 +86,7 @@ class UserTicketBookingForm extends Component {
       date,
       email,
       mobileNumber,
+      price,
       userEmail,
       userMobileNumber,
       userAddressLine01,
@@ -98,6 +103,7 @@ class UserTicketBookingForm extends Component {
       mobileNumber,
       userEmail,
       userMobileNumber,
+      price,
       userAddressLine01,
       userAddressLine02,
       userAddressLine03,

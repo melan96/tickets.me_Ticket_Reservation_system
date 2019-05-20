@@ -12,7 +12,7 @@ class TrainSheduleTable extends Component {
   };
 
   itmDetails = input => {
-    this.props.priceSetState(JSON.stringify(input.Price));
+    this.props.priceSetState(input.Price);
   };
 
   constructor(props) {

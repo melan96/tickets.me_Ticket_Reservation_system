@@ -17,7 +17,7 @@ class TicketBasicInformation extends Component {
               <select
                 className="form-control"
                 id="sel1"
-                onChange={onFieldChange("to")}
+                onChange={onFieldChange("from")}
               >
                 <option>Kandana</option>
                 <option>Matara</option>
@@ -28,10 +28,7 @@ class TicketBasicInformation extends Component {
               <br />
               <div className="form-group">
                 <label htmlFor="sel1">To</label>
-                <select
-                  className="form-control"
-                  onChange={onFieldChange("from")}
-                >
+                <select className="form-control" onChange={onFieldChange("to")}>
                   <option>Kandana</option>
                   <option>Matara</option>
                   <option>Badulla</option>

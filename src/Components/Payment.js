@@ -7,16 +7,19 @@ class Payment extends Component {
     return (
       <div className="container">
         <div className="row">
-          {/* You can make it whatever width you want. I'm making it full width
-on <= small devices and 4/12 page width on >= medium devices */}
-
-          {/* CREDIT CARD FORM STARTS HERE */}
           <div className="panel panel-default credit-card-box">
             <div className="panel-heading display-table">
               <div className="row display-tr">
-                <h3 className="panel-title display-td">
+                <h2 className="panel-title display-td">
                   Payment Gateway : Tickets Me
-                </h3>
+                </h2>
+
+                <h5 style={{ color: "green" }}>
+                  Your Ticket Price : {this.props.values.price} LKR
+                  <br /> You Booking is Train from {
+                    this.props.values.from
+                  } to {this.props.values.to}
+                </h5>
                 <div className="display-td">
                   <img
                     className="img-responsive pull-right"
@@ -82,11 +85,14 @@ on <= small devices and 4/12 page width on >= medium devices */}
                 <div className="row">
                   <div className="col-xs-12">
                     <div className="form-group">
-                      <label htmlFor="couponCode">COUPON CODE</label>
+                      <label htmlFor="couponCode">
+                        NIC Number (Only for Gov. Employees)
+                      </label>
                       <input
                         type="text"
                         className="form-control"
                         name="couponCode"
+                        placeholder="10% off for Gov.Employees"
                       />
                     </div>
                   </div>
@@ -109,7 +115,6 @@ on <= small devices and 4/12 page width on >= medium devices */}
               </form>
             </div>
           </div>
-          {/* CREDIT CARD FORM ENDS HERE */}
         </div>
       </div>
     );
