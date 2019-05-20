@@ -1,7 +1,24 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 class Payment extends Component {
   state = {};
+
+  doPayment = () => {
+    const formData = {
+      paymentCardNo: document.getElementById("cardNumber").value,
+      paymentCardEXP: document.getElementById("cardExpiry").value,
+      paymentAmount: this.props.values.price,
+      transactionID: ""
+    };
+
+    axios
+      .post("http://localhost:4001/paymentSucess", formData)
+      .then(function(response) {
+        console.log("success", response.data);
+      });
+
+    this.props.nextPage();
+  };
 
   render() {
     return (
@@ -36,9 +53,9 @@ class Payment extends Component {
                       <label htmlFor="cardNumber">CARD NUMBER</label>
                       <div className="input-group">
                         <input
-                          type="tel"
+                          type="number"
                           className="form-control"
-                          name="cardNumber"
+                          id="cardNumber"
                           placeholder="Valid Card Number"
                           autoComplete="cc-number"
                           required
@@ -59,9 +76,9 @@ class Payment extends Component {
                         <span className="visible-xs-inline">EXP</span> DATE
                       </label>
                       <input
-                        type="tel"
+                        type="text"
                         className="form-control"
-                        name="cardExpiry"
+                        id="cardExpiry"
                         placeholder="MM / YY"
                         autoComplete="cc-exp"
                         required
@@ -101,7 +118,7 @@ class Payment extends Component {
                   <div className="col-xs-12">
                     <button
                       className="btn btn-success btn-lg btn-block"
-                      type="submit"
+                      onClick={this.doPayment}
                     >
                       Start Subscription
                     </button>

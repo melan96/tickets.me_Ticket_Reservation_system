@@ -4,6 +4,7 @@ import ConfirmationCode from "../ConfirmationCode";
 import UserContactInfo from "../UserContactInfo";
 import TrainSheduleTable from "../TrainSheduleTable";
 import Payment from "../Payment";
+import Success from "../Success";
 
 class UserTicketBookingForm extends Component {
   state = {
@@ -147,6 +148,14 @@ class UserTicketBookingForm extends Component {
       case 5:
         return (
           <Payment
+            values={values}
+            nextPage={this.nextPage}
+            onFieldChange={this.onFieldChange}
+          />
+        );
+      case 6:
+        return (
+          <Success
             values={values}
             nextPage={this.nextPage}
             onFieldChange={this.onFieldChange}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import image from "../assets/mountains.jpg";
 
 class ImageSlider extends Component {
   state = {};
@@ -18,10 +18,7 @@ class ImageSlider extends Component {
           {/* Wrapper for slides */}
           <div className="carousel-inner">
             <div className="item active">
-              <img
-                src="http://www.bluthemes.com/assets/img/blog/12/mountains.jpg"
-                alt="Los Angeles"
-              />
+              <img src={image} alt="Los Angeles" />
               <div className="center">
                 <div style={{ verticalAlign: "middle" }}>
                   <a href="/tickets">
@@ -40,7 +37,7 @@ class ImageSlider extends Component {
                     class="btn btn-warning btn-lg "
                     style={{ position: "absolute", top: "50%", right: "30%" }}
                   >
-                    Book your Tickets Now!
+                    Check your Reservations
                   </button>
                 </div>
               </div>

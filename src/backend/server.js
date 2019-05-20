@@ -33,6 +33,7 @@ const train_data_scheme = new mongoose.Schema({
 });
 
 let userSession = 0;
+let userGlobEmail = "";
 
 const TrainData = mongoose.model("train_data", train_data_scheme);
 
@@ -71,6 +72,39 @@ app.post("/paymentSucess", (req, res) => {
     .save()
     .then(res => console.log(res))
     .catch(err => console.log(err));
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "ticketmelk@gmail.com", // generated ethereal user
+      pass: "windows8pro" // generated ethereal password
+    }
+  });
+
+  //session key management for user
+
+  // send mail with defined transport object
+  let info = transporter.sendMail({
+    from: '"TicketsMe Email Confirmation" <noreply-tmc>', // sender address
+    to: userGlobEmail, // list of receivers
+    subject: "[TicketsMe Lk] Confirm your Email", // Subject line
+    html: `<html><h3>Thank your for shopping with us</h3>
+      <br/>
+      <p>Dear customer, We recieved your payment successfully</p>
+    
+      <br />
+  <h5>TicketsME Lk EmailGateway</h5>
+      </html>` // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
 app.post("/senduser", (req, res) => {
   let userDataLoad = new User(req.body);
@@ -95,14 +129,20 @@ app.post("/senduser", (req, res) => {
 
   //session key management for user
 
+  userGlobEmail = JSON.stringify(req.body.userEmail);
   // send mail with defined transport object
   let info = transporter.sendMail({
-    from: '"TicketsMeReply👻" <noreply-tic>', // sender address
+    from: '"TicketsMe Email Confirmation" <noreply-tmc>', // sender address
     to: JSON.stringify(req.body.userEmail), // list of receivers
-    subject: "Confirm your email", // Subject line
-    html: `<html><h3>Confirm Your Email Address ${
-      userSession.confirmationkey
-    }</h3></html>` // html body
+    subject: "[TicketsMe Lk] Confirm your Email", // Subject line
+    html: `<html><h3>Confirm Your Email Address</h3>
+    <br/>
+    <p>Your six(6) digit confirmation key is : </p>
+    <h3>${userSession.confirmationkey}</h3>
+
+    <br />
+<h5>TicketsME Lk EmailGateway</h5>
+    </html>` // html body
   });
 
   console.log("Message sent: %s", info.messageId);
