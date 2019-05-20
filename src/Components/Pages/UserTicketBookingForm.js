@@ -3,6 +3,7 @@ import TicketBasicInformation from "../TicketBasicInformation";
 import ConfirmationCode from "../ConfirmationCode";
 import UserContactInfo from "../UserContactInfo";
 import TrainSheduleTable from "../TrainSheduleTable";
+import Payment from "../Payment";
 
 class UserTicketBookingForm extends Component {
   state = {
@@ -64,6 +65,14 @@ class UserTicketBookingForm extends Component {
     );
   };
 
+  priceSetState = input => {
+    // alert("eeeee");
+    this.setState({
+      price: input
+    });
+    console.log("Price set to" + JSON.stringify(input));
+    this.nextPage();
+  };
   render() {
     const { pageCode } = this.state;
     const {
@@ -110,6 +119,7 @@ class UserTicketBookingForm extends Component {
             values={values}
             nextPage={this.nextPage}
             onFieldChange={this.onFieldChange}
+            priceSetState={this.priceSetState}
           />
         );
       case 3:
@@ -121,7 +131,21 @@ class UserTicketBookingForm extends Component {
           />
         );
       case 4:
-        return <ConfirmationCode />;
+        return (
+          <ConfirmationCode
+            values={values}
+            nextPage={this.nextPage}
+            onFieldChange={this.onFieldChange}
+          />
+        );
+      case 5:
+        return (
+          <Payment
+            values={values}
+            nextPage={this.nextPage}
+            onFieldChange={this.onFieldChange}
+          />
+        );
     }
   }
 }

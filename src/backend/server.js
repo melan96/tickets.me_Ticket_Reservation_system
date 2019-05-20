@@ -31,6 +31,8 @@ const train_data_scheme = new mongoose.Schema({
   Price: String
 });
 
+let userSession = 0;
+
 const TrainData = mongoose.model("train_data", train_data_scheme);
 
 app.get("/getda", (req, res) => {
@@ -45,6 +47,13 @@ app.get("/getda", (req, res) => {
   });
 });
 
+app.get("/getKey", (req, res) => {
+  unit = {
+    name: "jsonObj",
+    confirmation: userSession.confirmationkey
+  };
+  res.send(unit);
+});
 app.post("/senduser", (req, res) => {
   let userDataLoad = new User(req.body);
 
@@ -53,6 +62,8 @@ app.post("/senduser", (req, res) => {
     .save()
     .then(res => console.log(res))
     .catch(err => console.log(err));
+
+  userSession = sessionKeyManagement();
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -64,12 +75,16 @@ app.post("/senduser", (req, res) => {
     }
   });
 
+  //session key management for user
+
   // send mail with defined transport object
   let info = transporter.sendMail({
     from: '"TicketsMeReply👻" <noreply-tic>', // sender address
     to: JSON.stringify(req.body.userEmail), // list of receivers
     subject: "Confirm your email", // Subject line
-    html: `<html><h3>Confirm Your Email Address ${randomKeyGenerator()}</h3></html>` // html body
+    html: `<html><h3>Confirm Your Email Address ${
+      userSession.confirmationkey
+    }</h3></html>` // html body
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -81,7 +96,14 @@ app.post("/senduser", (req, res) => {
 });
 
 function randomKeyGenerator() {
-  return "250154";
+  return Math.floor(Math.random() * 999999) + 100000;
+}
+
+function sessionKeyManagement() {
+  const userKeySession = {
+    confirmationkey: randomKeyGenerator()
+  };
+  return userKeySession;
 }
 
 app.listen(4001, () => {

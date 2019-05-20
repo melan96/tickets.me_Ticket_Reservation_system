@@ -29,12 +29,12 @@ class NavigationBar extends Component {
                   <a href="#">Contact Us</a>
                 </li>
               </ul>
-              <button
+              {/* <button
                 className="btn btn-danger navbar-btn"
                 style={{ float: "right" }}
               >
                 Login
-              </button>
+              </button> */}
             </div>
           </nav>
         </Switch>
