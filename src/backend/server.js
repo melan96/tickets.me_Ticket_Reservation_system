@@ -80,7 +80,10 @@ app.post("/paymentSucess", (req, res) => {
     auth: {
       user: "ticketmelk@gmail.com", // generated ethereal user
       pass: "windows8pro" // generated ethereal password
-    }
+    },
+    tls:{
+	rejectUnauthorized:false
+	}
   });
 
   //session key management for user
@@ -124,7 +127,10 @@ app.post("/senduser", (req, res) => {
     auth: {
       user: "ticketmelk@gmail.com", // generated ethereal user
       pass: "windows8pro" // generated ethereal password
-    }
+    },
+ tls:{
+	rejectUnauthorized:false
+	}
   });
 
   //session key management for user
