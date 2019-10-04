@@ -1519,3 +1519,8 @@ patch:
   'npm:ms:20151024':
     - email-verification > mongoose > ms:
         patched: '2019-07-25T00:59:11.444Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:56:00.111Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:56:00.111Z'
